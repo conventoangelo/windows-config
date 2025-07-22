@@ -1,0 +1,112 @@
+{
+	"$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+	"secondary_prompt": {
+		"template": "❯❯ ",
+		"foreground": "lightGreen",
+		"background": "transparent"
+	},
+	"transient_prompt": {
+		"template": "❯ ",
+		"background": "transparent",
+		"foreground_templates": [
+			"{{if gt .Code 0}}red{{end}}",
+			"{{if eq .Code 0}}lightGreen{{end}}"
+		]
+	},
+	"console_title_template": "{{.Shell}} in {{.PWD}}",
+	"blocks": [
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"properties": {
+						"folder_separator_icon": "/",
+						"home_icon": "~",
+						"max_depth": 2,
+						"style": "full"
+					},
+					"style": "plain",
+					"template": "{{ .Path }}",
+					"foreground": "magenta",
+					"background": "transparent",
+					"type": "path"
+				},
+				{
+					"properties": {
+						"fetch_stash_count": true,
+						"fetch_status": true,
+						"fetch_upstream_icon": true
+					},
+					"style": "plain",
+					"template": " {{ .UpstreamIcon }} {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+					"foreground": "lightGreen",
+					"background": "transparent",
+					"type": "git",
+					"foreground_templates": [
+						"{{ if or (.Working.Changed) (.Staging.Changed) }}#ff9248{{ end }}",
+						"{{ if and (gt .Ahead 0) (gt .Behind 0) }}#f26d50{{ end }}",
+						"{{ if gt .Ahead 0 }}#f17c37{{ end }}",
+						"{{ if gt .Behind 0 }}#89d1dc{{ end }}"
+					]
+				},
+				{
+					"style": "plain",
+					"template": " {{if .Root}}root{{else}}{{end}}",
+					"foreground": "yellow",
+					"background": "transparent",
+					"type": "text"
+				}
+			],
+			"newline": true
+		},
+		{
+			"type": "rprompt",
+			"overflow": "hidden",
+			"segments": [
+				{
+					"properties": {
+						"always_enabled": true
+					},
+					"style": "plain",
+					"template": " {{ if gt .Code 0 }}\uf52f{{ else }}\uf49e{{ end }}",
+					"background": "transparent",
+					"type": "status",
+					"foreground_templates": [
+						"{{ if gt .Code 0 }}lightRed{{ else }}lightGreen{{ end }}"
+					]
+				},
+				{
+					"properties": {
+						"always_enabled": true
+					},
+					"style": "plain",
+					"template": " {{ .FormattedMs }} ",
+					"foreground": "yellow",
+					"background": "transparent",
+					"type": "executiontime"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"style": "plain",
+					"template": "❯",
+					"background": "transparent",
+					"type": "text",
+					"foreground_templates": [
+						"{{if gt .Code 0}}red{{end}}",
+						"{{if eq .Code 0}}lightGreen{{end}}"
+					]
+				}
+			],
+			"newline": true
+		}
+	],
+	"version": 3,
+	"auto_upgrade": true,
+	"final_space": true
+}
