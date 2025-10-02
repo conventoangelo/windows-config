@@ -1,0 +1,136 @@
+/* VS Code CSS Config for Custom UI Style Extension*/
+
+.windows,
+.font-mono,
+.mtk1,
+span.ced-chat-session-detail-5b270d0e-4.ced-chat-session-detail-4,
+.monaco-editor .ced-chat-session-detail-1af347b-4.ced-chat-session-detail-4::after,
+.editorPlaceholder {
+	font-family: "Geist Mono", sans-serif !important;
+	--monaco-monospace-font: "DM Mono", "Courier New", monospace;
+}
+
+.monaco-workbench .part > .title > .title-label h2 {
+	font-size: 12px;
+}
+
+:root {
+	--font-family: "Geist Mono" !important;
+}
+
+#command-blur {
+	backdrop-filter: blur(8px);
+	background: rgba(0, 0, 0, 0.15);
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.line-numbers {
+	opacity: 0.65;
+}
+
+.monaco-editor .find-widget > .button.codicon-widget-close {
+	top: 11px;
+}
+
+.monaco-editor .find-widget > .find-part {
+	align-items: center;
+}
+
+.monaco-editor-hover {
+	backdrop-filter: blur(3px) !important;
+	background-image: linear-gradient(
+		var(--vscode-editor-background) 0%,
+		var(--vscode-sideBar-background) 100%
+	) !important;
+	border: none !important;
+	border-radius: 10px !important;
+	box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.45) !important;
+	/* font-family: Geist Mono !important; */
+	padding: 10px !important;
+}
+
+.monaco-hover {
+	backdrop-filter: blur(3px) !important;
+	background-image: linear-gradient(
+			var(--vscode-editor-background) 0%,
+			var(--vscode-sideBar-background) 100%
+		)
+		100% !important;
+	border: none !important;
+	border-radius: 10px !important;
+	box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.45) !important;
+	/* font-family: Geist Mono !important; */
+	padding: 10px !important;
+}
+
+.monaco-inputbox {
+	border-radius: 6px !important;
+}
+
+.monaco-inputbox input::placeholder {
+	color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.monaco-inputbox > .ibwrapper > .input,
+.monaco-inputbox > .ibwrapper > .mirror {
+	padding: 8px 10px !important;
+}
+
+.monaco-list-row:hover {
+	background: rgba(0, 0, 0, 0.2) !important;
+}
+
+.monaco-list-rows {
+	background: transparent !important;
+}
+
+.no-custom-title-bar-visibility div.monaco-workbench .has-composite-bar {
+	padding-left: 8px !important;
+}
+
+.notifications-toasts .monaco-list-row:hover {
+	background: none !important;
+}
+
+.quick-input-widget {
+	backdrop-filter: blur(3px) !important;
+	background-image: linear-gradient(
+		var(--vscode-editor-background) 0%,
+		var(--vscode-sideBar-background) 100%
+	) !important;
+	border-radius: 20px !important;
+	box-shadow: 0px 24px 60px rgba(0, 0, 0, 0.45) !important;
+	/* font-family: Geist Mono !important; */
+	padding: 10px 10px 18px 10px !important;
+	top: 50% !important;
+	transform: translateY(-50%) !important;
+}
+
+.composite-bar {
+	margin: auto;
+}
+
+li.action-item.icon {
+	width: auto;
+}
+
+a.action-label.codicon.codicon-explorer-view-icon,
+a.action-label.codicon.codicon-search-view-icon,
+a.action-label.codicon.codicon-source-control-view-icon,
+a.action-label.codicon.codicon-debug-view-icon,
+a.action-label.codicon.codicon-extensions-view-icon,
+a.action-label.codicon.codicon-edit-session,
+a.action-label.codicon.codicon-comment-discussion {
+	font-size: 20px !important;
+	height: 20px !important;
+	width: 20px !important;
+}
+
+.monaco-workbench .pane-body.integrated-terminal .xterm,
+.monaco-workbench .terminal-editor .xterm {
+	position: relative !important;
+}
