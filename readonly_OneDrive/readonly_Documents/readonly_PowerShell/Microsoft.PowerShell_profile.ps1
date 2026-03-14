@@ -28,8 +28,8 @@ if (Test-Path($ChocolateyProfile)) {
 # Override default tab completion
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 
-$env:FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-$env:FZF_DEFAULT_OPTS='
+$env:FZF_DEFAULT_COMMAND = 'fd --type f --hidden --follow --exclude .git'
+$env:FZF_DEFAULT_OPTS = '
 --layout=reverse
 --border
 --padding=1 
@@ -46,24 +46,23 @@ $env:FZF_DEFAULT_OPTS='
 --bind alt-w:toggle-preview-wrap
 --bind ctrl-e:toggle-preview
 '
-$env:FZF_CTRL_T_COMMAND='fd --type f --hidden --follow --exclude .git'
-$env:FZF_CTRL_T_OPTS='
+$env:FZF_CTRL_T_COMMAND = 'fd --type f --hidden --follow --exclude .git'
+$env:FZF_CTRL_T_OPTS = '
 --preview-label="Preview "
 --preview-label-pos=1
 --preview "bat --color=always --tabs=4 --style=numbers --line-range=:500 {1}"
 --preview-window=bottom:border-top'
-$env:FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
-$env:FZF_ALT_C_OPTS='
+$env:FZF_ALT_C_COMMAND = 'fd --type d --hidden --follow --exclude .git'
+$env:FZF_ALT_C_OPTS = '
 --preview-window=right:50%:border-left
 --preview "eza --tree --color=always --group-directories-first --git-ignore --icons=always --level=2 {}"'
-$env:FZF_CTRL_R_OPTS='
+$env:FZF_CTRL_R_OPTS = '
 --height=60%
 --layout=reverse
 --preview-window=0%
 '
 
-function fzfd
-{
+function fzfd {
     $selectedItem = fd --type f --follow --hidden --exclude .git --exclude .ignore |
     fzf --prompt 'Files> ' `
         --header-first `
@@ -76,7 +75,8 @@ function fzfd
         --preview-window=right:60%:border-left
     if ($selectedItem) {
         $selectedItem | Set-Clipboard
-        Write-Output "Copied to clipboard: $selectedItem"}
+        Write-Output "Copied to clipboard: $selectedItem"
+    }
 }
 
 ## eza
