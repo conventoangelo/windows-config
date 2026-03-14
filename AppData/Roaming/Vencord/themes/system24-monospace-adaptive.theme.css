@@ -1,0 +1,263 @@
+/**
+ * @name system24 (monospace adaptive)
+ * @description a tui-style discord theme. monospace adaptive flavor — automatically switches between
+ *              crisp paper light and deep navy dark based on your system color scheme preference.
+ * @author refact0r
+ * @version 2.0.0
+ * @invite nz87hXyvcy
+ * @website https://github.com/refact0r/system24
+ * @source https://github.com/refact0r/system24/blob/master/theme/system24.theme.css
+ * @authorId 508863359777505290
+ * @authorLink https://www.refact0r.dev
+*/
+
+/* import theme modules */
+@import url("https://refact0r.github.io/system24/build/system24.css");
+
+/* ============================================================
+   SHARED BODY OPTIONS
+   These settings are identical in both light and dark modes.
+   ============================================================ */
+body {
+	/* font */
+	--font: "DM Mono";
+	--code-font: "DM Mono";
+	font-weight: 300;
+	letter-spacing: -0.05ch;
+
+	/* sizes */
+	--gap: 12px;
+	--divider-thickness: 4px;
+	--border-thickness: 2px;
+	--border-hover-transition: 0.2s ease;
+
+	/* animation/transition options */
+	--animations: on;
+	--list-item-transition: 0.2s ease;
+	--dms-icon-svg-transition: 0.4s ease;
+
+	/* top bar options */
+	--top-bar-height: var(--gap);
+	--top-bar-button-position: titlebar;
+	--top-bar-title-position: off;
+	--subtle-top-bar-title: off;
+
+	/* window controls */
+	--custom-window-controls: off;
+	--window-control-size: 14px;
+
+	/* dms button options */
+	--custom-dms-icon: off;
+	--dms-icon-svg-url: url("");
+	--dms-icon-svg-size: 90%;
+	--dms-icon-color-before: var(--icon-subtle);
+	--dms-icon-color-after: var(--white);
+	--custom-dms-background: off;
+	--dms-background-image-url: url("");
+	--dms-background-image-size: cover;
+	--dms-background-color: linear-gradient(70deg, var(--blue-2), var(--violet-2), var(--teal-2));
+
+	/* background image options */
+	--background-image: off;
+	--background-image-url: url("");
+
+	/* transparency/blur options */
+	--transparency-tweaks: off;
+	--remove-bg-layer: off;
+	--panel-blur: off;
+	--blur-amount: 12px;
+	--bg-floating: var(--bg-3);
+
+	/* other options */
+	--small-user-panel: on;
+	--unrounding: on;
+
+	/* styling options */
+	--custom-spotify-bar: on;
+	--ascii-titles: on;
+	--ascii-loader: system24;
+
+	/* panel labels */
+	--panel-labels: on;
+	--label-color: var(--text-muted);
+	--label-font-weight: 500;
+}
+
+/* ============================================================
+   ADAPTIVE COLOR SCHEME
+   color-scheme tells the browser which modes this element
+   supports, which is required for light-dark() to resolve.
+   ============================================================ */
+:root {
+	color-scheme: light dark;
+
+	--colors: on;
+
+	/* ----------------------------------------------------------
+       TEXT COLORS
+       light-dark(light-value, dark-value)
+       light: deep ink scale  #1f2939 → #a4afbd
+       dark:  bright slate    #d9dfe7 → #5d6a7d
+    ---------------------------------------------------------- */
+	--text-0: var(--bg-4);
+	--text-1: light-dark(#1f2939, #d9dfe7);
+	--text-2: light-dark(#333e4f, #b8c2cf);
+	--text-3: light-dark(#475365, #a4afbd);
+	--text-4: light-dark(#738295, #8b98a9);
+	--text-5: light-dark(#a4afbd, #5d6a7d);
+
+	/* ----------------------------------------------------------
+       BACKGROUNDS
+       light: paper whites  #ffffff → #d9dfe7
+       dark:  navy shells   #10151d → #293444
+    ---------------------------------------------------------- */
+	--bg-1: light-dark(#d9dfe7, #293444);
+	--bg-2: light-dark(#e7ebf2, #1f2939);
+	--bg-3: light-dark(#f4f7fd, #171f2b);
+	--bg-4: light-dark(#ffffff, #10151d);
+
+	/* ----------------------------------------------------------
+       ACCENT COLORS
+       Both modes share the same violet variable references —
+       the palette ramps below are what actually shift per mode.
+    ---------------------------------------------------------- */
+	--accent-1: var(--violet-1);
+	--accent-2: var(--violet-2);
+	--accent-3: var(--violet-3);
+	--accent-4: var(--violet-4);
+	--accent-5: var(--violet-5);
+	--accent-new: var(--red-2);
+
+	/* ----------------------------------------------------------
+       BORDER COLORS
+    ---------------------------------------------------------- */
+	--border-light: var(--hover);
+	--border: var(--active);
+	--border-hover: var(--violet-2);
+	--button-border: light-dark(rgba(31, 41, 57, 0.12), rgba(217, 223, 231, 0.1));
+
+	/* ----------------------------------------------------------
+       STATUS COLORS — same variable refs, palette shifts below
+    ---------------------------------------------------------- */
+	--online: var(--green-2);
+	--dnd: var(--red-2);
+	--idle: var(--amber-2);
+	--streaming: var(--violet-2);
+	--offline: var(--text-4);
+
+	/* ----------------------------------------------------------
+       BASE COLOR PALETTES
+       Each ramp has light/dark values derived from the
+       corresponding monospace vscode theme tokens.
+    ---------------------------------------------------------- */
+
+	/* red */
+	--red-1: light-dark(#df4047, #fc8f8e);
+	--red-2: light-dark(#c1313b, #f76769);
+	--red-3: light-dark(#a52430, #df4047);
+	--red-4: light-dark(#871c26, #c43038);
+	--red-5: light-dark(#6a1020, #a82028);
+
+	/* green */
+	--green-1: light-dark(#17975f, #66ce98);
+	--green-2: light-dark(#007b49, #17b877);
+	--green-3: light-dark(#00522f, #17975f);
+	--green-4: light-dark(#003d22, #0f7044);
+	--green-5: light-dark(#002a16, #0a5030);
+
+	/* blue */
+	--blue-1: light-dark(#5173f1, #a2b6ff);
+	--blue-2: light-dark(#3c60dd, #708fff);
+	--blue-3: light-dark(#264dcb, #5173f1);
+	--blue-4: light-dark(#002487, #3c60dd);
+	--blue-5: light-dark(#001660, #264dcb);
+
+	/* violet — primary accent */
+	--violet-1: light-dark(#8964e8, #c8aaff);
+	--violet-2: light-dark(#6f4cde, #a87ffb);
+	--violet-3: light-dark(#603bce, #8964e8);
+	--violet-4: light-dark(#4d21bb, #6f4cde);
+	--violet-5: light-dark(#380fa0, #603bce);
+
+	/* amber */
+	--amber-1: light-dark(#df8128, #ffc26e);
+	--amber-2: light-dark(#c16f23, #ffa23e);
+	--amber-3: light-dark(#a65921, #e07820);
+	--amber-4: light-dark(#904b1a, #c05810);
+	--amber-5: light-dark(#6b3410, #834314);
+
+	/* teal */
+	--teal-1: light-dark(#0075a2, #71c2ee);
+	--teal-2: light-dark(#005f82, #25a6e9);
+	--teal-3: light-dark(#00607e, #1a85c0);
+	--teal-4: light-dark(#004560, #126498);
+	--teal-5: light-dark(#002c40, #004b5e);
+}
+
+/* ============================================================
+   HOVER / ACTIVE OVERLAYS + GRADIENTS
+   light-dark() only resolves color primitives, not arbitrary
+   CSS expressions. These use @media blocks instead.
+   ============================================================ */
+
+/* --- Light mode overrides --- */
+@media (prefers-color-scheme: light) {
+	:root {
+		--hover: oklch(50% 0.03 220 / 0.08);
+		--active: oklch(50% 0.03 220 / 0.15);
+		--active-2: oklch(50% 0.03 220 / 0.22);
+		--message-hover: var(--hover);
+
+		--mention: linear-gradient(
+			to right,
+			color-mix(in hsl, var(--accent-2), transparent 88%) 40%,
+			transparent
+		);
+		--mention-hover: linear-gradient(
+			to right,
+			color-mix(in hsl, var(--accent-2), transparent 93%) 40%,
+			transparent
+		);
+		--reply: linear-gradient(
+			to right,
+			color-mix(in hsl, var(--text-3), transparent 88%) 40%,
+			transparent
+		);
+		--reply-hover: linear-gradient(
+			to right,
+			color-mix(in hsl, var(--text-3), transparent 93%) 40%,
+			transparent
+		);
+	}
+}
+
+/* --- Dark mode overrides --- */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--hover: oklch(60% 0.04 220 / 0.1);
+		--active: oklch(60% 0.04 220 / 0.2);
+		--active-2: oklch(60% 0.04 220 / 0.3);
+		--message-hover: var(--hover);
+
+		--mention: linear-gradient(
+			to right,
+			color-mix(in hsl, var(--accent-2), transparent 90%) 40%,
+			transparent
+		);
+		--mention-hover: linear-gradient(
+			to right,
+			color-mix(in hsl, var(--accent-2), transparent 95%) 40%,
+			transparent
+		);
+		--reply: linear-gradient(
+			to right,
+			color-mix(in hsl, var(--text-3), transparent 90%) 40%,
+			transparent
+		);
+		--reply-hover: linear-gradient(
+			to right,
+			color-mix(in hsl, var(--text-3), transparent 95%) 40%,
+			transparent
+		);
+	}
+}
