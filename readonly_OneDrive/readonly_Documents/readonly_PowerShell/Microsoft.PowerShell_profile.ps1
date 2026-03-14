@@ -22,9 +22,6 @@ Set-PSReadLineOption -Colors @{
 # Override default tab completion
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 
-## Zoxide
-Invoke-Expression (& 'C:\Users\conve\AppData\Local\Microsoft\WinGet\Packages\ajeetdsouza.zoxide_Microsoft.Winget.Source_8wekyb3d8bbwe\zoxide.exe' init --cmd cd powershell | Out-String)
-
 $env:FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 $env:FZF_DEFAULT_OPTS='
 --layout=reverse
@@ -116,3 +113,5 @@ Set-Alias -Name ll -Value ezg
 Set-Alias -Name lt -Value ezt
 fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 $env:EDITOR = "code --wait"
+
+Invoke-Expression (& { (zoxide init --cmd cd powershell | Out-String) })
