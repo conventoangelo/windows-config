@@ -4,7 +4,7 @@ Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -EditMode Windows
 
 ## oh-my-posh
-& 'C:\Users\conve\AppData\Local\Programs\oh-my-posh\bin\oh-my-posh.exe' init pwsh --config 'C:\Users\conve\eyco.omp.json' | Invoke-Expression
+oh-my-posh init pwsh --config 'C:\Users\conve\eyco.omp.json' | Invoke-Expression
 Set-PSReadLineOption -Colors @{
     Command            = 'Green'
     Number             = 'Cyan'
