@@ -1,14 +1,10 @@
 /**
- * @name system24 (monospace adaptive)
- * @description a tui-style discord theme. monospace adaptive flavor — automatically switches between
- *              crisp paper light and deep navy dark based on your system color scheme preference.
- * @author refact0r
- * @version 2.0.0
- * @invite nz87hXyvcy
- * @website https://github.com/refact0r/system24
- * @source https://github.com/refact0r/system24/blob/master/theme/system24.theme.css
- * @authorId 508863359777505290
- * @authorLink https://www.refact0r.dev
+ * @name system24 (monospace)
+ * @description a tui-style discord theme with monospace light and dark colors, modified from the system24 theme by refact0r.
+ * @author conventoangelo
+ * @version 1.0.0
+ * @website https://github.com/conventoangelo/dotfiles
+ * @source https://github.com/conventoangelo/dotfiles/blob/main/AppData/Roaming/Vencord/themes/system24-monospace.theme.css
 */
 
 /* import theme modules */
@@ -74,7 +70,7 @@ body {
 
 	/* styling options */
 	--custom-spotify-bar: on;
-	--ascii-titles: on;
+	--ascii-titles: off;
 	--ascii-loader: system24;
 
 	/* panel labels */
@@ -260,4 +256,21 @@ body {
 			transparent
 		);
 	}
+}
+
+/* --- Quick CSS --- */
+
+// Remove back/forward buttons and invite toolbar
+.backForwardButtons__63abb, 
+.inviteToolbar__133bf {
+    display: none;
+}
+
+// Adjust position of show chat button to align with other 
+.toolbar__9293f.toolbar__49508 {
+    height: 32px;
+    padding-right: 164px;
+}
+.headerBar__49508.container__9293f.transparent__9293f {
+    padding-block: unset;
 }
