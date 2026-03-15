@@ -2,8 +2,8 @@ Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -EditMode Windows
 
-## Oh-My-Posh
-& 'C:\Users\conve\AppData\Local\Programs\oh-my-posh\bin\oh-my-posh.exe' init pwsh --config 'C:\Users\conve\eyco.omp.json' | Invoke-Expression
+## oh-my-posh
+oh-my-posh init pwsh --config 'C:\Users\conve\eyco.omp.yaml' | Invoke-Expression
 Set-PSReadLineOption -Colors @{
     Command            = 'Green'
     Number             = 'Cyan'
@@ -17,7 +17,13 @@ Set-PSReadLineOption -Colors @{
     String             = 'DarkGreen'
 }
 
-## Fzf
+# choco tab completion
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+    Import-Module "$ChocolateyProfile"
+}
+
+## fzf
 # Override default tab completion
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 
@@ -72,6 +78,7 @@ function fzfd {
     }
 }
 
+## eza
 function ezt {
     param(
         [Parameter(Position = 0)]
@@ -104,13 +111,16 @@ function ezg {
     eza.exe -l --grid --all --icons -h --git-repos --git --time-style="+%b %d '%y  %l:%M %p" -o --group-directories-first --ignore-glob='[nN][tT][uU][sS][eE][rR]*' --no-symlinks 
 }
 
+## fnm
+fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
+
+## zoxide
+Invoke-Expression (& { (zoxide init --cmd cd powershell | Out-String) })
+
+## Aliases
 Set-Alias -Name lg -Value lazygit 
 Set-Alias -Name e -Value explorer.exe
 Set-Alias -Name c -Value cls
 Set-Alias -Name ls -Value eza.exe
 Set-Alias -Name ll -Value ezg
 Set-Alias -Name lt -Value ezt
-fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
-$env:EDITOR = "code --wait"
-
-Invoke-Expression (& { (zoxide init --cmd cd powershell | Out-String) })
