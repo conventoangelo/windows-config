@@ -125,3 +125,6 @@ Set-Alias -Name c -Value cls
 Set-Alias -Name ls -Value eza.exe
 Set-Alias -Name ll -Value ezg
 Set-Alias -Name lt -Value ezt
+
+## fastfetch
+fastfetch -c paleofetch.jsonc
