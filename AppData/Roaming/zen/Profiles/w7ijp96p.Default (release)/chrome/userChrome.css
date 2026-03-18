@@ -1,0 +1,616 @@
+/* =============================================================================
+   userChrome.css
+   ============================================================================= */
+
+
+/* =============================================================================
+   1. TYPOGRAPHY
+   ============================================================================= */
+
+/* Global font family */
+:root {
+  *:not(.titlebar-buttonbox-container *) {
+    font-family: "DM Sans 14pt", "DM Sans", sans-serif !important;
+  }
+}
+
+/* Base font size — UI elements */
+.bookmark-item,
+.checkbox-label,
+.findbar-label,
+.findbar-textbox,
+.menubar,
+.menupopup,
+.search-panel-one-offs-header-label,
+.subviewbutton,
+.tab-preview-text-container,
+.unified-extensions-item-action-button *,
+.tab-group-label,
+.tab-text.tab-label,
+.urlbarView-userContext-iconMode,
+.zen-current-workspace-indicator-name,
+menupopup,
+[class^="zen-workspace-creation"],
+[id^="toolbar-context-"],
+[id^="zen-context-menu-compact-mode-"],
+#confirmation-hint-message,
+#history-panel,
+#identity-icon-label,
+#identity-popup-mainView-panel-header-span,
+#synced-tabs-client-0,
+#synced-tabs-client-1,
+#tab-label-input,
+#urlbar-input,
+#urlbar-zoom-button,
+#zen-toast-container {
+  font-size: 13px !important;
+}
+
+/* Sidebar header and URL bar results */
+#sidebar-header,
+#urlbar-results * {
+  font-size: 1.25rem !important;
+}
+
+
+/* =============================================================================
+   2. URL BAR
+   ============================================================================= */
+
+/* Default state */
+#urlbar-input {
+  font-size: 14px !important;
+  text-align: center !important;
+}
+
+/* Expanded/focused state */
+#urlbar-input[aria-expanded="true"] {
+  font-size: 18px !important;
+}
+
+#urlbar[open] {
+  min-width: 65vw !important;
+  font-size: 1.4rem !important;
+}
+
+/* Identity box and zoom button — hidden by default, revealed on hover */
+#identity-box,
+#urlbar-zoom-button {
+  padding: 0 !important;
+  opacity: 0 !important;
+  max-width: 0 !important;
+  transition:
+    padding 0.5s ease-in-out,
+    max-width 0.5s ease-in-out,
+    opacity 0.5s ease-in-out !important;
+}
+
+.urlbar-input-container:hover #identity-box,
+.urlbar-input-container:hover #urlbar-zoom-button {
+  opacity: 1 !important;
+  max-width: 200px !important;
+}
+
+.urlbar-input-container:hover #urlbar-zoom-button {
+  padding: 3px 7px !important;
+}
+
+#urlbar-zoom-button {
+  margin: calc(
+    (var(--urlbar-min-height) - 20px) / 2 - 2px - var(--urlbar-container-padding)
+  ) !important;
+}
+
+/* Page blur/scale when URL bar is open (floating mode) */
+#browser:has(#urlbar[open][zen-floating-urlbar="true"]) .browserContainer {
+  pointer-events: none;
+  scale: 1.1 !important;
+  filter: blur(10px) brightness(70%) !important;
+}
+
+#urlbar[open][zen-floating-urlbar="true"] #urlbar-background {
+  border-radius: 1em !important;
+}
+
+/* URL bar loading gradient animation */
+#urlbar:not([breakout-extend="true"]) .urlbar-input-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(25deg, #4e4ac233, #4ecdc433, #4e4ac233);
+  background-size: 200% 100%;
+  animation: urlbar-loading-gradient 1s linear reverse infinite;
+  animation-play-state: paused;
+  opacity: 0;
+  transition: opacity 0.25s;
+  pointer-events: none;
+}
+
+&:has(#reload-button[displaystop="true"]) .urlbar-input-container::before {
+  animation-play-state: running;
+  opacity: 1;
+}
+
+@keyframes urlbar-loading-gradient {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+
+/* =============================================================================
+   3. UI ELEMENTS & BORDERS
+   ============================================================================= */
+
+/* Rounded borders */
+.identity-box-button,
+.urlbar-page-action,
+.urlbarView-favicon,
+#tracking-protection-icon-container,
+#urlbar-zoom-button {
+  border-radius: 1.5rem !important;
+}
+
+.browserSidebarContainer {
+  border-radius: 1rem !important;
+}
+
+
+/* =============================================================================
+   4. NAVIGATION BAR & SIDEBAR
+   ============================================================================= */
+
+#nav-bar {
+  margin-bottom: 0 !important;
+}
+
+#page-action-buttons hbox {
+  align-items: center !important;
+  margin: 0 !important;
+}
+
+#sidebar-box {
+  min-width: 36rem !important;
+}
+
+#TabsToolbar {
+  margin-top: 4px !important;
+  margin-inline: 1px !important;
+}
+
+#navigator-toolbox {
+  --border-radius-medium: 11px !important;
+  --tab-border-radius: 6px !important;
+}
+
+[zen-compact-mode="true"] .browser-toolbox-background {
+  height: 80% !important;
+  margin-block: auto !important;
+}
+
+.urlbarView-row[has-action]:is([type="switchtab"], [type="remotetab"], [type="clipboard"])
+  .urlbarView-action {
+  margin-left: 6px !important;
+}
+
+
+/* =============================================================================
+   5. TITLE BAR BUTTONS
+   ============================================================================= */
+
+.titlebar-button {
+  border: 0 !important;
+  border-radius: var(--uc-contextmenu-menuitem-border-radius) !important;
+  height: 0 !important;
+  padding: 13px !important;
+  width: 0 !important;
+  align-items: center !important;
+}
+
+.titlebar-buttonbox {
+  align-items: center !important;
+  gap: 2px !important;
+  justify-content: center !important;
+}
+
+.titlebar-close {
+  margin-right: 6px !important;
+}
+
+#zen-sidebar-top-buttons .titlebar-buttonbox-container {
+  margin-top: 0px !important;
+}
+
+
+/* =============================================================================
+   6. STATUS PANEL
+   ============================================================================= */
+
+#statuspanel {
+  margin: 0.5rem !important;
+}
+
+#statuspanel-label {
+  background: var(--zen-colors-tertiary) !important;
+  border: 2px solid var(--zen-colors-border) !important;
+  border-radius: 1rem !important;
+  font-family: "DM Mono" !important;
+  font-size: 1.2rem !important;
+  padding: 2px 10px !important;
+}
+
+
+/* =============================================================================
+   7. EXTENSIONS PANEL
+   ============================================================================= */
+
+.unified-extensions-item {
+  margin: 1px !important;
+}
+
+.unified-extensions-item-action-button,
+.unified-extensions-item-menu-button {
+  padding-block: 0px !important;
+}
+
+#unified-extensions-view {
+  width: 290px !important;
+}
+
+
+/* =============================================================================
+   8. HIDDEN ELEMENTS
+   ============================================================================= */
+
+.extensionPage,
+.panel-header,
+.unified-extensions-item-message-deck,
+#identity-icon-box,
+#star-button-box,
+#tracking-protection-icon-container,
+#unified-extensions-description,
+#unified-extensions-messages-container,
+#userContext-indicator,
+#userContext-label {
+  display: none !important;
+}
+
+
+/* =============================================================================
+   9. TAB ANIMATIONS
+   ============================================================================= */
+
+/* New tab appear */
+#vertical-pinned-tabs-container .tabbrowser-tab,
+#tabbrowser-arrowscrollbox .tabbrowser-tab {
+  animation: new-tab-appear 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+@keyframes new-tab-appear {
+  0%   { opacity: 0; transform: translateY(-25px); }
+  60%  { opacity: 0.8; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Tab switch transition */
+#tabbrowser-arrowscrollbox,
+tab {
+  transition: all 0.3s ease-in-out !important;
+}
+
+/* Tab background scale */
+tab:not([zen-essential="true"]):not([multiselected="true"]) .tab-background {
+  transition: all 0.2s ease-in-out !important;
+  scale: 0 !important;
+}
+
+tab:not([zen-essential="true"]) .tab-background[selected] {
+  scale: 1 !important;
+}
+
+/* Tab panel enter animation */
+#tabbrowser-tabpanels > hbox:not([zen-split="true"]) {
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important;
+  scale: 0.9 !important;
+  opacity: 0;
+}
+
+#tabbrowser-tabpanels > hbox.deck-selected:not([zen-split="true"]) {
+  scale: 1 !important;
+  opacity: 1 !important;
+}
+
+/* Loading tab */
+tab[busy] {
+  scale: 0.95 !important;
+
+  .tab-background {
+    opacity: 0.3 !important;
+  }
+}
+
+/*  /pending tab dimming */
+#tabbrowser-tabs .tabbrowser-tab {
+  @media (-moz-bool-pref: "zen.tabs.dim-pending") {
+    &[pending="true"] .tab-icon-image,
+    &[pending="true"] .tab-text.tab-label {
+      opacity: 0.5 !important;
+    }
+  }
+}
+
+.tabbrowser-tab[pending="true"] {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+
+/* =============================================================================
+   10. TRACKPAD SWIPE GESTURES
+   ============================================================================= */
+
+.browserStack browser {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.1s !important;
+}
+
+/* Previous page swipe */
+.browserStack:has(#historySwipeAnimationPreviousArrow:not([style="translate: none;"])) browser {
+  scale: 0.95 !important;
+  transform: translateX(3%) !important;
+  border-radius: 2em !important;
+}
+
+/* Next page swipe */
+.browserStack:has(#historySwipeAnimationNextArrow:not([style="translate: none;"])) browser {
+  scale: 0.95 !important;
+  transform: translateX(-3%) !important;
+  border-radius: 2em !important;
+}
+
+/* Resting state after swipe */
+.browserStack browser[style*="transform: none"] {
+  border-radius: 0.75em !important;
+}
+
+
+/* =============================================================================
+   11. ESSENTIALS TABS — FAVICON BACKGROUND COLORING
+   ============================================================================= */
+
+#zen-essentials-container .tabbrowser-tab {
+  @media (-moz-bool-pref: "zen.theme.essentials-favicon-bg") {
+    &[visuallyselected] .tab-background {
+      &::after {
+        left: -50% !important;
+        top: -50% !important;
+        width: 200% !important;
+        height: 200% !important;
+        filter: blur(20px) !important;
+      }
+
+      &::before {
+        mask-image: none !important;
+        background-color: light-dark(
+          color-mix(in srgb, #ffffff 65%, transparent),
+          color-mix(in srgb, #000000 55%, transparent)
+        ) !important;
+      }
+    }
+
+    &[visuallyselected]:hover .tab-background::before {
+      background-color: light-dark(
+        color-mix(in srgb, #ffffff 55%, transparent),
+        color-mix(in srgb, #000000 65%, transparent)
+      ) !important;
+    }
+  }
+}
+
+
+/* =============================================================================
+   12. CTRL+TAB SWITCHER
+   ============================================================================= */
+
+/* Entry animation */
+#ctrlTab-panel {
+  --panel-background: var(--lwt-accent-color) !important;
+  transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.2s !important;
+  scale: 0.7;
+}
+
+#ctrlTab-panel:has(.ctrlTab-preview:not([hidden="true"])) {
+  scale: 1 !important;
+}
+
+slot:nth-child(1) {
+  border-radius: 1em !important;
+  padding: 0 !important;
+}
+
+/* Full panel styling */
+@-moz-document url-prefix("chrome:") {
+  :root {
+    --ctrltab-roundness: 18px;
+    --ctrltab-padding: 28px;
+    --ctrltab-zoom: 0.85;
+    --ctrltab-background: light-dark(rgba(146, 145, 144, 0.94), rgba(24, 23, 22, 0.96));
+    --ctrltab-shadow-size: 24px;
+
+    --ctrltab-preview-padding: 20px;
+    --ctrltab-preview-border-width: 1px;
+    --ctrltab-preview-border-color: light-dark(rgba(253, 255, 254, 0.1), rgba(83, 82, 79, 0.2));
+    --ctrltab-preview-focus-background: light-dark(rgba(77, 76, 78, 0.8), rgba(184, 185, 183, 0.18));
+    --ctrltab-preview-font-size: 13px;
+    --ctrltab-preview-letter-spacing: 0px;
+
+    --ctrltab-preview-favicon-size: 32px;
+    --ctrltab-preview-favicon-outdent: 10px;
+
+    /* Derived helpers */
+    --ctrltab-zoom-invert: pow(var(--ctrltab-zoom), -1);
+    --ctrltab-roundness-zoomed: calc(var(--ctrltab-roundness) * var(--ctrltab-zoom));
+  }
+
+  #ctrlTab-panel {
+    --panel-border-radius: var(--ctrltab-roundness-zoomed) !important;
+    --panel-shadow: 0 0 var(--ctrltab-shadow-size) calc(var(--ctrltab-shadow-size) / 3) rgba(1, 1, 4, 0.25) !important;
+    --panel-background: var(--ctrltab-background) !important;
+    --panel-padding: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: unset !important;
+
+    --ctrltab-default-spacing: 10%;
+    --ctrltab-tile-counter: 0;
+
+    &:has(.ctrlTab-preview:nth-child(1):not([hidden])) { --ctrltab-tile-counter: 1; }
+    &:has(.ctrlTab-preview:nth-child(2):not([hidden])) { --ctrltab-tile-counter: 2; }
+    &:has(.ctrlTab-preview:nth-child(3):not([hidden])) { --ctrltab-tile-counter: 3; }
+    &:has(.ctrlTab-preview:nth-child(4):not([hidden])) { --ctrltab-tile-counter: 4; }
+    &:has(.ctrlTab-preview:nth-child(5):not([hidden])) { --ctrltab-tile-counter: 5; }
+    &:has(.ctrlTab-preview:nth-child(6):not([hidden])) { --ctrltab-tile-counter: 6; }
+    &:has(.ctrlTab-preview:nth-child(7):not([hidden])) {
+      --ctrltab-tile-counter: 7;
+      --ctrltab-default-spacing: 7%;
+    }
+
+    --panel-shadow-margin: var(--ctrltab-shadow-size)
+      calc(
+        var(--ctrltab-default-spacing) + (90% - var(--ctrltab-default-spacing)) / 2 * (1 - var(--ctrltab-zoom)) -
+        (
+          ((var(--ctrltab-preview-padding) * 2 + var(--ctrltab-preview-border-width) * 2) * var(--ctrltab-tile-counter)) / 2
+          + (var(--ctrltab-padding) * 0.8)
+        ) * var(--ctrltab-zoom)
+      ) !important;
+
+    #ctrlTab-previews {
+      zoom: var(--ctrltab-zoom) !important;
+      padding: var(--ctrltab-padding) calc(var(--ctrltab-padding) * 0.8) !important;
+      gap: 8px !important;
+
+      .ctrlTab-preview {
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: calc(var(--ctrltab-roundness-zoomed) * 0.8) !important;
+
+        .ctrlTab-preview-inner {
+          margin: 0 !important;
+          padding: calc(var(--ctrltab-preview-padding) + var(--ctrltab-preview-border-width)) !important;
+          padding-bottom: calc(var(--ctrltab-preview-padding) * 0.75) !important;
+          border-radius: calc(var(--ctrltab-roundness-zoomed) * 0.8) !important;
+          border: none !important;
+          text-shadow: 0.5px 0.5px 0px light-dark(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+        }
+
+        .ctrlTab-canvas {
+          margin-bottom: calc(var(--ctrltab-preview-padding) * 0.6 + var(--ctrltab-preview-border-width)) !important;
+          box-shadow: 0 0 0 var(--ctrltab-preview-border-width) var(--ctrltab-preview-border-color) !important;
+        }
+
+        .ctrlTab-canvas,
+        img,
+        canvas {
+          border-radius: calc(var(--ctrltab-roundness-zoomed) * 0.4) !important;
+        }
+
+        .ctrlTab-label {
+          font-size: calc(var(--ctrltab-preview-font-size) * var(--ctrltab-zoom-invert)) !important;
+          letter-spacing: calc(var(--ctrltab-preview-letter-spacing) * var(--ctrltab-zoom-invert));
+          margin: 4px calc(var(--ctrltab-preview-border-width) * -1) 0 !important;
+          padding: 0 0 4px !important;
+          text-align: center !important;
+          white-space: nowrap !important;
+          overflow: hidden !important;
+          text-overflow: ellipsis !important;
+        }
+
+        .ctrlTab-favicon-container image {
+          height: var(--ctrltab-preview-favicon-size) !important;
+          width: var(--ctrltab-preview-favicon-size) !important;
+          box-shadow: none !important;
+          background: none !important;
+          position: absolute !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          margin-right: calc(var(--ctrltab-preview-favicon-outdent) * -1) !important;
+          margin-top: calc(
+            (var(--ctrltab-preview-padding) / 2 + var(--ctrltab-preview-border-width)) * -1
+            - var(--ctrltab-preview-favicon-size)
+            + var(--ctrltab-preview-favicon-outdent) * 0.8
+          ) !important;
+        }
+
+        &:focus .ctrlTab-preview-inner {
+          background: var(--ctrltab-preview-focus-background) !important;
+          border: none !important;
+        }
+      }
+    }
+  }
+}
+
+
+/* =============================================================================
+   13. PICTURE-IN-PICTURE
+   ============================================================================= */
+
+@-moz-document url("chrome://global/content/pictureinpicture/player.xhtml") {
+  html {
+    border: 0px solid rgba(255, 0, 0, 255) !important;
+    border-radius: 3rem !important;
+  }
+}
+
+
+/* =============================================================================
+   14. CUSTOMIZE TOOLBAR OVERLAY
+   Based on code by https://github.com/Tanay-Kar
+   ============================================================================= */
+
+#customization-container {
+  position: absolute;
+  z-index: 1;
+  bottom: 10px;
+  right: 10px;
+  height: 80%;
+  width: 70%;
+  border-radius: 12px;
+  padding: 10px;
+  background: light-dark(rgba(255, 255, 255, 0.32), rgba(0, 0, 0, 0.3)) !important;
+}
+
+@media (-moz-bool-pref: "zen.tabs.vertical.right-side") {
+  #customization-container {
+    left: 10px;
+  }
+
+  #customization-container #customization-content-container {
+    flex-direction: row-reverse;
+  }
+}
+
+#customization-container #customization-panel-container {
+  padding: 10px !important;
+}
+
+#customization-container #customization-panelWrapper {
+  --panel-arrow-offset: 0px;
+}
+
+#customization-container .panel-arrowbox {
+  display: none !important;
+}
+
+#customization-container .panel-arrowcontent {
+  height: 100% !important;
+  background: light-dark(rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.4)) !important;
+  border: none !important;
+  margin: 0px !important;
+  border-radius: 8px;
+}
+
+/* Debug: flag narrow layouts */
+@media (max-width: 700px) {
+  #customization-container {
+    border: 2px solid red;
+  }
+}
