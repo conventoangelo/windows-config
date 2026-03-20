@@ -2,7 +2,8 @@ README.md
 
 {{- if ne .chezmoi.os "windows" }}
 AppData/
-readonly_*/
+readonly_OneDrive/
+OneDrive/
 AppData/Roaming/zen/Profiles/w7ijp96p.Default (release)/chrome/userChrome.css
 {{- end }}
 
