@@ -554,12 +554,17 @@ slot:nth-child(1) {
    ============================================================================= */
 
 @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml") {
-  html {
-    border: 0px solid rgba(255, 0, 0, 255) !important;
-    border-radius: 3rem !important;
+  html, body {
+    background: transparent !important;
+    border-radius: .5rem !important;
+    overflow: hidden !important;
+  }
+
+  video {
+    border-radius: .5rem !important;
+    overflow: hidden !important;
   }
 }
-
 
 /* =============================================================================
    14. CUSTOMIZE TOOLBAR OVERLAY
