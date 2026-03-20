@@ -5,3 +5,11 @@ AppData/
 readonly_*/
 AppData/Roaming/zen/Profiles/w7ijp96p.Default (release)/chrome/userChrome.css
 {{- end }}
+
+{{- if ne .chezmoi.os "darwin" }}
+
+{{- end }}
+
+{{- if ne .chezmoi.os "linux" }}
+
+{{- end }}
